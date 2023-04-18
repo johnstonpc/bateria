@@ -1,0 +1,16 @@
+{
+  "name": "Bateria alarme",
+  "short_name": "bateria alarme",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "start_url": "https://johnstonpc.github.io/bateria/",
+  "display": "standalone",
+  "description": "emite um sinal sonoro quando a bateria chega os 100%",
+  "icons": [
+    {
+      "src": "img/bateriaimg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
