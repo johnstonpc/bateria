@@ -28,18 +28,22 @@ self.addEventListener("fetch", event => {
       })
   );
 });
-self.addEventListener('install', function(event) {
-  console.log('Service Worker instalado');
-
-  // Solicita permissão para continuar executando em segundo plano
-  event.waitUntil(self.skipWaiting());
-});
-
-self.addEventListener('activate', function(event) {
-  console.log('Service Worker ativado');
-});
-
-self.addEventListener('fetch', function(event) {
-  console.log('Requisição interceptada pelo Service Worker');
-  event.respondWith(fetch(event.request));
-});
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+  .then(function(registration) {
+    console.log('Service worker registered successfully');
+    registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(applicationServerPublicKey)
+    })
+    .then(function(subscription) {
+      console.log('User is subscribed:', subscription);
+    })
+    .catch(function(err) {
+      console.log('Failed to subscribe the user: ', err);
+    });
+  })
+  .catch(function(err) {
+    console.log('Service worker registration failed: ', err);
+  });
+}
