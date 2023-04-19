@@ -28,3 +28,18 @@ self.addEventListener("fetch", event => {
       })
   );
 });
+self.addEventListener('install', function(event) {
+  console.log('Service Worker instalado');
+
+  // Solicita permissão para continuar executando em segundo plano
+  event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', function(event) {
+  console.log('Service Worker ativado');
+});
+
+self.addEventListener('fetch', function(event) {
+  console.log('Requisição interceptada pelo Service Worker');
+  event.respondWith(fetch(event.request));
+});
