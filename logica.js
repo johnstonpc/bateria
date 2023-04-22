@@ -10,7 +10,7 @@ setInterval(function () {
 
 
   });
-}, 300000); // 300000 milisegundos = 5 minutos
+}, 150000); // 300000 milisegundos = 5 minutos
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
